@@ -1,5 +1,11 @@
-version: '2'
+verson: '2'
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+    - pip install --upgrade pip
+    - pip install docker-compose
 services:
+  - docker
   dockerapp:
     build: .
     ports:
@@ -8,4 +14,4 @@ services:
       - ./app:/app
 
   redis:
-    image: redis:3.2.0
+    image: redis:3.2.0    
